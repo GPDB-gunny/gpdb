@@ -82,20 +82,21 @@ script:
   - make
   - make install
   - source ${TRAVIS_BUILD_DIR}/gpsql/greenplum_path.sh
-  - postgres --version
-  - initdb --version
-  - createdb --version
-  - gpmigrator --version
-  - gpssh --version
   - cd ${TRAVIS_BUILD_DIR}/gpAux/extensions/orafce
   - make install USE_PGXS=1
   - cd ${TRAVIS_BUILD_DIR}/gpAux/extensions/gpmapreduce
   - make install
-  - gpmapreduce --version
   - cd ${TRAVIS_BUILD_DIR}/gpAux/extensions/gpfdist
-  - CFLAGS=-w ./configure --enable-transformations --prefix=${TRAVIS_BUILD_DIR}/gpsql --with-apr-config=${TRAVIS_BUILD_DIR}/tools/bin/apr-1-config
+  - CFLAGS=-w ./configure --enable-transformations GP_VERSION=$( cut -d" " -f1 ${TRAVIS_BUILD_DIR}/VERSION ) --prefix=${TRAVIS_BUILD_DIR}/gpsql --with-apr-config=${TRAVIS_BUILD_DIR}/tools/bin/apr-1-config
   - make
   - make install
+  - postgresql --version
+  - initdb --version
+  - createdb --version
+  - psql --version
+  - gpmigrator --version
+  - gpssh --version
+  - gpmapreduce --version
   - gpfdist --version
 
 ## ----------------------------------------------------------------------
