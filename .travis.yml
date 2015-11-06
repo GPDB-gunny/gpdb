@@ -67,6 +67,7 @@ before_script:
 ## ----------------------------------------------------------------------
 
 script:
+  - false
   - cd ${TRAVIS_BUILD_DIR}
   - ./configure --with-openssl --with-ldap --with-libcurl --prefix=${TRAVIS_BUILD_DIR}/gpsql
   - make
@@ -89,5 +90,5 @@ script:
 
 notifications:
   email:
-    on_success: always
+    on_success: change
     on_failure: always
