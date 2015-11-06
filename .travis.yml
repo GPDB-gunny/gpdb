@@ -82,3 +82,11 @@ script:
   - make
   - make install
   - gpfdist --version
+
+## ----------------------------------------------------------------------
+## Notification
+## ----------------------------------------------------------------------
+
+notifications:
+  email:
+    - gpdb-dev@greenplum.org
