@@ -82,7 +82,7 @@ script:
   - make
   - make install
   - source ${TRAVIS_BUILD_DIR}/gpsql/greenplum_path.sh
-  - postgresql --version
+  - postgres --version
   - initdb --version
   - createdb --version
   - gpmigrator --version
