@@ -89,4 +89,7 @@ script:
 
 notifications:
   email:
-    - gpdb-dev@greenplum.org
+    recipients:
+      - gpdb-dev@greenplum.org
+    on_success: always
+    on_failure: always
