@@ -90,6 +90,7 @@ script:
 notifications:
   email:
     recipients:
-      - gpdb-dev@greenplum.org
+      - eespino@pivotal.io
+      - releng@pivotal.io
     on_success: always
     on_failure: always
