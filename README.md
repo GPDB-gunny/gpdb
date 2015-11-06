@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/GPDB-gunny/gpdb.svg?branch=travis-ci)](https://travis-ci.org/GPDB-gunny/gpdb)
+
+---------------------------------------
+
 ![Greenplum](/gpAux/releng/images/logo-greenplum.png)
 
 The Greenplum Database (GPDB) is an advanced, fully featured, open
