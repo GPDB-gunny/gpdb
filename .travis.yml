@@ -1,4 +1,4 @@
-## ----------------------------------------------------------------------
+## ======================================================================
 ##   ____ ____  ____  ____     ____                         
 ##  / ___|  _ \|  _ \| __ )   / ___|_   _ _ __  _ __  _   _ 
 ## | |  _| |_) | | | |  _ \  | |  _| | | | '_ \| '_ \| | | |
@@ -6,6 +6,16 @@
 ##  \____|_|   |____/|____/   \____|\__,_|_| |_|_| |_|\__, |
 ##                                                    |___/ 
 ## ----------------------------------------------------------------------
+## Travis CI build script for GPDB Open Source Project.
+## 
+## Reference:
+##   o Travis CI Docs: http://docs.travis-ci.com
+## ----------------------------------------------------------------------
+##
+## This project builds the core Greenplum Database Open Source
+## project.
+##
+## ======================================================================
 
 language: c
 sudo: false
@@ -72,13 +82,18 @@ script:
   - make
   - make install
   - source ${TRAVIS_BUILD_DIR}/gpsql/greenplum_path.sh
+  - postgresql --version
+  - initdb --version
+  - createdb --version
+  - gpmigrator --version
   - gpssh --version
   - cd ${TRAVIS_BUILD_DIR}/gpAux/extensions/orafce
   - make install USE_PGXS=1
   - cd ${TRAVIS_BUILD_DIR}/gpAux/extensions/gpmapreduce
   - make install
+  - gpmapreduce --version
   - cd ${TRAVIS_BUILD_DIR}/gpAux/extensions/gpfdist
-  - CFLAGS=-w ./configure --enable-transformations gpdb_top=${TRAVIS_BUILD_DIR} GP_VERSION=$(cut -d" " -f1 ${TRAVIS_BUILD_DIR}/VERSION) --prefix=${TRAVIS_BUILD_DIR}/gpsql --with-apr-config=${TRAVIS_BUILD_DIR}/tools/bin/apr-1-config
+  - CFLAGS=-w ./configure --enable-transformations --prefix=${TRAVIS_BUILD_DIR}/gpsql --with-apr-config=${TRAVIS_BUILD_DIR}/tools/bin/apr-1-config
   - make
   - make install
   - gpfdist --version
